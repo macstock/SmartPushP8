@@ -14,8 +14,7 @@
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
-{
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
 
     if ( [[pboard types] containsObject:NSURLPboardType] ) {
@@ -28,7 +27,6 @@
     }
     return YES;
 }
-
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     
@@ -53,10 +51,12 @@
     
     return NSDragOperationNone;
 }
--(void)didDragEndBlock:(DidDragEnd)didDragEnd{
+
+-(void)didDragEndBlock:(DidDragEnd)didDragEnd {
     _didDragEnd = [didDragEnd copy];
 }
--(void)didEnterDragingBlock:(DidEnterDraging)didEnterDraging{
+
+-(void)didEnterDragingBlock:(DidEnterDraging)didEnterDraging {
     _didEnterDraging  = [didEnterDraging copy];
 }
 @end

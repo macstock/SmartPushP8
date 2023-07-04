@@ -44,8 +44,7 @@ typedef int otSocket;
  * info about a peer returned from MakeServerConnection() and
  * AcceptClientConnection().
  */
-typedef struct
-{   UInt32      ipAddr;
+typedef struct {   UInt32      ipAddr;
     int         port;
 } PeerSpec;
 

@@ -14,8 +14,7 @@
     [self registerForDraggedTypes:@[NSFilenamesPboardType]];
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
-{
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     if ( [[pboard types] containsObject:NSURLPboardType] ) {
@@ -26,12 +25,9 @@
         if (_dragPopUpButtonDragEnd) {
             _dragPopUpButtonDragEnd([files objectAtIndex:0]);
         }
-  
-        
     }
     return YES;
 }
-
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     
@@ -56,7 +52,8 @@
     
     return NSDragOperationNone;
 }
--(void)dragPopUpButtonDragEnd:(DragPopUpButtonDragEnd)dragPopUpButtonDragEnd{
+
+-(void)dragPopUpButtonDragEnd:(DragPopUpButtonDragEnd)dragPopUpButtonDragEnd {
     _dragPopUpButtonDragEnd = [dragPopUpButtonDragEnd copy];
 }
 @end

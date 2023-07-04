@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BBCEAE12A5276D700F014E2 /* CupertinoJWTError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEAD92A5276D700F014E2 /* CupertinoJWTError.swift */; };
+		4BBCEAE22A5276D700F014E2 /* JWT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADA2A5276D700F014E2 /* JWT.swift */; };
+		4BBCEAE32A5276D700F014E2 /* ECKeyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADB2A5276D700F014E2 /* ECKeyData.swift */; };
+		4BBCEAE42A5276D700F014E2 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADC2A5276D700F014E2 /* Data+Extension.swift */; };
+		4BBCEAE52A5276D700F014E2 /* P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADD2A5276D700F014E2 /* P8.swift */; };
+		4BBCEAE62A5276D700F014E2 /* ECPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADE2A5276D700F014E2 /* ECPrivateKey.swift */; };
+		4BBCEAE72A5276D700F014E2 /* ASN1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEADF2A5276D700F014E2 /* ASN1.swift */; };
+		4BBCEAE82A5276D700F014E2 /* JWTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBCEAE02A5276D700F014E2 /* JWTManager.swift */; };
 		A276B6CE1AB51A6F009EF649 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A276B6CD1AB51A6F009EF649 /* AppDelegate.m */; };
 		A276B6D01AB51A6F009EF649 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A276B6CF1AB51A6F009EF649 /* main.m */; };
 		A276B6D31AB51A6F009EF649 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A276B6D21AB51A6F009EF649 /* PushViewController.m */; };
@@ -24,7 +32,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A276B6C71AB51A6F009EF649 /* SmartPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BBCEAD92A5276D700F014E2 /* CupertinoJWTError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CupertinoJWTError.swift; sourceTree = "<group>"; };
+		4BBCEADA2A5276D700F014E2 /* JWT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
+		4BBCEADB2A5276D700F014E2 /* ECKeyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECKeyData.swift; sourceTree = "<group>"; };
+		4BBCEADC2A5276D700F014E2 /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		4BBCEADD2A5276D700F014E2 /* P8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = P8.swift; sourceTree = "<group>"; };
+		4BBCEADE2A5276D700F014E2 /* ECPrivateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ECPrivateKey.swift; sourceTree = "<group>"; };
+		4BBCEADF2A5276D700F014E2 /* ASN1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASN1.swift; sourceTree = "<group>"; };
+		4BBCEAE02A5276D700F014E2 /* JWTManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWTManager.swift; sourceTree = "<group>"; };
+		4BBCEAE92A5276EB00F014E2 /* SmartPushWithP8-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SmartPushWithP8-Bridging-Header.h"; sourceTree = "<group>"; };
+		A276B6C71AB51A6F009EF649 /* SmartPushWithP8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPushWithP8.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A276B6CB1AB51A6F009EF649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A276B6CC1AB51A6F009EF649 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A276B6CD1AB51A6F009EF649 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +81,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BBCEAD72A5276D700F014E2 /* JWT */ = {
+			isa = PBXGroup;
+			children = (
+				4BBCEAD82A5276D700F014E2 /* Utils */,
+				4BBCEAE02A5276D700F014E2 /* JWTManager.swift */,
+			);
+			path = JWT;
+			sourceTree = "<group>";
+		};
+		4BBCEAD82A5276D700F014E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4BBCEAD92A5276D700F014E2 /* CupertinoJWTError.swift */,
+				4BBCEADA2A5276D700F014E2 /* JWT.swift */,
+				4BBCEADB2A5276D700F014E2 /* ECKeyData.swift */,
+				4BBCEADC2A5276D700F014E2 /* Data+Extension.swift */,
+				4BBCEADD2A5276D700F014E2 /* P8.swift */,
+				4BBCEADE2A5276D700F014E2 /* ECPrivateKey.swift */,
+				4BBCEADF2A5276D700F014E2 /* ASN1.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A276B6BE1AB51A6F009EF649 = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +116,7 @@
 		A276B6C81AB51A6F009EF649 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A276B6C71AB51A6F009EF649 /* SmartPush.app */,
+				A276B6C71AB51A6F009EF649 /* SmartPushWithP8.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +124,7 @@
 		A276B6C91AB51A6F009EF649 /* SmartPush */ = {
 			isa = PBXGroup;
 			children = (
+				4BBCEAD72A5276D700F014E2 /* JWT */,
 				B89258D61E63C821005E9F27 /* Model */,
 				B8F2D8FC1E5D1CF90029D63C /* Manager */,
 				A276B6ED1AB51AEE009EF649 /* View */,
@@ -96,6 +137,7 @@
 				A276B6FB1AB53781009EF649 /* HelpViewController.m */,
 				A276B6D41AB51A6F009EF649 /* Images.xcassets */,
 				A276B6D61AB51A6F009EF649 /* Main.storyboard */,
+				4BBCEAE92A5276EB00F014E2 /* SmartPushWithP8-Bridging-Header.h */,
 				A276B6CA1AB51A6F009EF649 /* Supporting Files */,
 			);
 			path = SmartPush;
@@ -163,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A276B6C61AB51A6F009EF649 /* SmartPush */ = {
+		A276B6C61AB51A6F009EF649 /* SmartPushWithP8 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A276B6E71AB51A6F009EF649 /* Build configuration list for PBXNativeTarget "SmartPush" */;
+			buildConfigurationList = A276B6E71AB51A6F009EF649 /* Build configuration list for PBXNativeTarget "SmartPushWithP8" */;
 			buildPhases = (
 				A276B6C31AB51A6F009EF649 /* Sources */,
 				A276B6C41AB51A6F009EF649 /* Frameworks */,
@@ -175,9 +217,9 @@
 			);
 			dependencies = (
 			);
-			name = SmartPush;
+			name = SmartPushWithP8;
 			productName = SmartPush;
-			productReference = A276B6C71AB51A6F009EF649 /* SmartPush.app */;
+			productReference = A276B6C71AB51A6F009EF649 /* SmartPushWithP8.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -194,7 +236,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A276B6C21AB51A6F009EF649 /* Build configuration list for PBXProject "SmartPush" */;
+			buildConfigurationList = A276B6C21AB51A6F009EF649 /* Build configuration list for PBXProject "SmartPushWithP8" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -208,7 +250,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A276B6C61AB51A6F009EF649 /* SmartPush */,
+				A276B6C61AB51A6F009EF649 /* SmartPushWithP8 */,
 			);
 		};
 /* End PBXProject section */
@@ -231,15 +273,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				B89258D91E63C831005E9F27 /* Sec.m in Sources */,
+				4BBCEAE42A5276D700F014E2 /* Data+Extension.swift in Sources */,
 				A276B6D31AB51A6F009EF649 /* PushViewController.m in Sources */,
 				A276B6FC1AB53781009EF649 /* HelpViewController.m in Sources */,
 				B8F2D9021E5D2B600029D63C /* DragPopUpButton.m in Sources */,
 				A276B6F11AB51AF8009EF649 /* ioSock.c in Sources */,
+				4BBCEAE32A5276D700F014E2 /* ECKeyData.swift in Sources */,
+				4BBCEAE22A5276D700F014E2 /* JWT.swift in Sources */,
+				4BBCEAE52A5276D700F014E2 /* P8.swift in Sources */,
+				4BBCEAE72A5276D700F014E2 /* ASN1.swift in Sources */,
+				4BBCEAE62A5276D700F014E2 /* ECPrivateKey.swift in Sources */,
 				A276B6D01AB51A6F009EF649 /* main.m in Sources */,
+				4BBCEAE12A5276D700F014E2 /* CupertinoJWTError.swift in Sources */,
 				A276B6F41AB51B01009EF649 /* TextFieldDrag.m in Sources */,
 				B8F2D8FF1E5D1D320029D63C /* SecManager.m in Sources */,
 				F5BB44AF26DE4582007D5735 /* NetworkManager.m in Sources */,
 				A276B6CE1AB51A6F009EF649 /* AppDelegate.m in Sources */,
+				4BBCEAE82A5276D700F014E2 /* JWTManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,10 +390,12 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SmartPush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = org.skyfox.SmartPush;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.SmartPushWithP8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SmartPush/SmartPushWithP8-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -354,17 +406,19 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SmartPush/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 3.2;
-				PRODUCT_BUNDLE_IDENTIFIER = org.skyfox.SmartPush;
+				PRODUCT_BUNDLE_IDENTIFIER = com.js.SmartPushWithP8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SmartPush/SmartPushWithP8-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A276B6C21AB51A6F009EF649 /* Build configuration list for PBXProject "SmartPush" */ = {
+		A276B6C21AB51A6F009EF649 /* Build configuration list for PBXProject "SmartPushWithP8" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A276B6E51AB51A6F009EF649 /* Debug */,
@@ -373,7 +427,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A276B6E71AB51A6F009EF649 /* Build configuration list for PBXNativeTarget "SmartPush" */ = {
+		A276B6E71AB51A6F009EF649 /* Build configuration list for PBXNativeTarget "SmartPushWithP8" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A276B6E81AB51A6F009EF649 /* Debug */,

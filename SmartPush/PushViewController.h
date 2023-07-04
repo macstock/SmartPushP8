@@ -24,7 +24,7 @@
     
     SSLContextRef _context;
     SecKeychainRef _keychain;
-    Sec *_currentSec;
+    Sec2 *_currentSec;
     SecIdentityRef _identity;
     NSUserDefaults *_defaults;
     NSMutableArray *_certificates;
@@ -35,10 +35,17 @@
 @property (weak) IBOutlet NSButtonCell *devSelect;
 @property (weak) IBOutlet NSButtonCell *productSelect;
 @property (weak) IBOutlet NSPopUpButton *payLoadPopUpButton;
-@property (weak) IBOutlet NSTextField *tokenTextField;
 @property (weak) IBOutlet DragPopUpButton *cerPopUpButton;
 @property (weak) IBOutlet NSSegmentedControl *prioritySegmentedControl;
-@property (weak) IBOutlet NSPopUpButton *payloadTypeButton;
+@property (weak) IBOutlet NSPopUpButton *pushTypeButton;
+@property (weak) IBOutlet NSTextField *teamIDKeyTextField;
+@property (weak) IBOutlet NSTextField *teamIDTextField;
+@property (weak) IBOutlet NSTextField *keyIDKeyTextField;
+@property (weak) IBOutlet NSTextField *keyIDTextField;
+@property (weak) IBOutlet NSTextField *bundleIDKeyTextField;
+@property (weak) IBOutlet NSTextField *bundleIDTextField;
+@property (weak) IBOutlet NSTextField *tokenKeyTextField;
+@property (weak) IBOutlet NSTextField *deviceTokenTextField;
 
 - (IBAction)connect:(id)sender;
 - (IBAction)push:(id)sender;

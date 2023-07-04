@@ -15,5 +15,6 @@
 + (NSString *)subjectSummaryWithCertificate:(SecCertificateRef)certificate;
 + (NSDate *)expirationWithCertificate:(SecCertificateRef)certificate;
 + (NSArray *)allKeychainCertificatesWithError:(NSError *__autoreleasing *)error;
-+ (Sec*)secModelWithRef:(SecCertificateRef)sec;
++ (Sec2*)secModelWithRef:(SecCertificateRef)sec;
++ (Sec2*)secModelWithP8Path:(NSString *)path;
 @end

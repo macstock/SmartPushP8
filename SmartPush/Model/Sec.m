@@ -8,6 +8,6 @@
 
 #import "Sec.h"
 
-@implementation Sec
+@implementation Sec2
 
 @end

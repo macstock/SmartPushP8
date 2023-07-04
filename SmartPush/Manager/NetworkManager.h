@@ -9,7 +9,6 @@
 //#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NetworkManager : NSObject<NSURLSessionDelegate>
@@ -21,9 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)postWithPayload:(NSString *)payload
             toToken:(NSString *)token
           withTopic:(nullable NSString *)topic
-           priority:(NSUInteger)priority
-         collapseID:(NSString *)collapseID
-        payloadType:(NSString *)payloadType
+           priority:(nullable NSString *)priority
+         collapseID:(nullable NSString *)collapseID
+        pushType:(NSString *)pushType
+            p8Token:(NSString *)p8Token
           inSandbox:(BOOL)sandbox
              exeSuccess:(void(^)(id responseObject))exeSuccess
               exeFailed:(void(^)(NSString *error))exeFailed;

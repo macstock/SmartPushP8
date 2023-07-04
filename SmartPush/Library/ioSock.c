@@ -86,16 +86,14 @@ static void tprintf(
     const char *str,
     UInt32 req,
     UInt32 act,
-    const UInt8 *buf)
-{
+    const UInt8 *buf) {
     #if    SSL_OT_IO_TRACE_NZ
     if(act == 0) {
         return;
     }
     #endif
     printf("%s(%u): moved (%u) bytes\n", str, (unsigned)req, (unsigned)act);
-    #if    SSL_OT_IO_DUMP
-    {
+    #if    SSL_OT_IO_DUMP {
         unsigned i;
         
         for(i=0; i<act; i++) {
@@ -107,8 +105,7 @@ static void tprintf(
         printf("\n");
     }
     #endif
-    #if SSL_OT_IO_PAUSE
-    {
+    #if SSL_OT_IO_PAUSE {
         char instr[20];
         printf("CR to continue: ");
         gets(instr);
@@ -131,8 +128,7 @@ static void tprintf(
 static time_t lastTime = (time_t)0;
 #define TIME_INTERVAL        3
 
-static void outputDot()
-{
+static void outputDot() {
     time_t thisTime = time(0);
     
     if((thisTime - lastTime) >= TIME_INTERVAL) {
@@ -144,12 +140,10 @@ static void outputDot()
 #define outputDot()
 #endif
 
-
 /*
  * One-time only init.
  */
-void initSslOt(void)
-{
+void initSslOt(void) {
 
 }
 
@@ -166,13 +160,12 @@ OSStatus MakeServerConnection(
     PeerSpec *peer)            // RETURNED
 {
     struct sockaddr_in  addr;
-    struct hostent      *ent;
+    struct hostent      *ent = NULL;
     struct in_addr      host;
     int                    sock = 0;
     
     *socketNo = 0;
-    if (hostName[0] >= '0' && hostName[0] <= '9')
-    {
+    if (hostName[0] >= '0' && hostName[0] <= '9') {
         host.s_addr = inet_addr(hostName);
     }
     else {
@@ -198,8 +191,7 @@ OSStatus MakeServerConnection(
     addr.sin_port = htons((u_short)port);
 
     addr.sin_family = AF_INET;
-    if (connect(sock, (struct sockaddr *) &addr, sizeof(struct sockaddr_in)) != 0)
-    {   printf("connect returned error\n");
+    if (connect(sock, (struct sockaddr *) &addr, sizeof(struct sockaddr_in)) != 0) {   printf("connect returned error\n");
         return errSecIO;
     }
 
@@ -345,8 +337,7 @@ OSStatus AcceptClientConnection(
  * Shut down a connection.
  */
 void endpointShutdown(
-    otSocket sock)
-{
+    otSocket sock) {
     close((int)sock);
 }
     

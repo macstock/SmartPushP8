@@ -10,12 +10,12 @@
 typedef void (^DidDragEnd)(NSString *result,NSTextField *text);
 typedef void (^DidEnterDraging)();
 
-@interface TextFieldDrag : NSTextField
-{
+@interface TextFieldDrag : NSTextField {
     DidDragEnd _didDragEnd;
     DidEnterDraging _didEnterDraging;
 
 }
+
 -(void)didDragEndBlock:(DidDragEnd)didDragEnd;
 -(void)didEnterDragingBlock:(DidEnterDraging)didEnterDraging;
 
