@@ -1,8 +1,10 @@
-# SmartPush
-#### SmartPush,一款IOS苹果推送测试程序,Mac OS下的apns工具APP
-#### SmartPush,iOS Push Notification Debug App 
+# SmartPushP8
+#### SmartPushP8,一款iOS苹果推送测试程序,Mac OS下的apns工具APP
+#### SmartPushP8 支持使用p8文件 & cer证书文件进行推送
 
-##### 基于PushMeBaby,https://github.com/stefanhafeneger/PushMeBaby 修改,感谢作者
+##### 基于以下两个项目修改,感谢作者
+##### PushWithP8,https://github.com/tianguanghui/PushWithP8
+##### SmartPush,https://github.com/shaojiankui/SmartPush
 
 ## 界面截图
 ![image](https://raw.githubusercontent.com/shaojiankui/SmartPush/master/demo.png)
