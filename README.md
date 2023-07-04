@@ -7,8 +7,8 @@
 ##### SmartPush,https://github.com/shaojiankui/SmartPush
 
 ## 界面截图
-![image](https://github.com/buzhidaoqishenmemingzi/SmartPushP8/master/demo_p8.png)
-![image](https://github.com/buzhidaoqishenmemingzi/SmartPushP8/master/demo_cer.png)
+![image](https://github.com/buzhidaoqishenmemingzi/SmartPushP8/blob/master/demo_p8.png)
+![image](https://github.com/buzhidaoqishenmemingzi/SmartPushP8/blob/master/demo_cer.png)
 
 ## 使用方法
 #### 1.使用方法 从任意位置拖拽cer证书到选择控件上,或者从列表控件中选择推送证书,或置浏览任意位置的推送证书
