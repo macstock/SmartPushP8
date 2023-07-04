@@ -85,8 +85,8 @@
     else if (sender.indexOfSelectedItem ==1) {
         //        [self devCerBrowse:nil];
         [self browseDone:^(NSString *url) {
-            [self updateUI];
             [self applyWithCerPath:url];
+            [self updateUI];
         }];
     } else {
         [self log:[NSString stringWithFormat:@"选择证书 %@",_cerName] warning:NO];
