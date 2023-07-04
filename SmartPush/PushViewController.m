@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     self.payload.string = @"{\"aps\":{\"alert\":\"This is some fancy message.\",\"badge\":6,\"sound\": \"default\"}}";
-     
+    
     //    [[ NSUserDefaults  standardUserDefaults] removeObjectForKey:KEY_CERNAME];
     //    [[ NSUserDefaults  standardUserDefaults] removeObjectForKey:KEY_CER];
     
@@ -207,7 +207,7 @@
     
     if ([[_defaults valueForKey:KEY_BUNDLE_ID] description].length>0)
         [self.bundleIDTextField setStringValue:[_defaults valueForKey:KEY_BUNDLE_ID]];
-
+    
 }
 
 - (void)saveUserData {
@@ -225,7 +225,7 @@
     NSLog(@"disconnect");
     [self log:@"断开链接" warning:NO];
     [self log:@"---------------------------------" warning:NO];
-
+    
     if (_closeResult != 0) {
         return;
     }
@@ -317,7 +317,7 @@
             return;
         }
     }
-
+    
 }
 
 - (IBAction)push:(id)sender {
@@ -423,11 +423,8 @@
         default:
             stringValue = @"{\"aps\":{\"alert\":\"This is some fancy message.\",\"badge\":6,\"sound\": \"default\"}}";
             break;
-
     }
-                
     self.payload.string  = stringValue;
-
 }
 
 - (void)browseDone:(void (^)(NSString *url))complete {
@@ -497,7 +494,7 @@
     
     // Update the view, if already loaded.
 }
- 
+
 - (BOOL)isDarkMode {
     if (@available(macOS 10.14, *)) {
         NSDictionary *dict = [[NSUserDefaults standardUserDefaults] persistentDomainForName:NSGlobalDomain];
