@@ -23,12 +23,28 @@
 #import "NetworkManager.h"
 #import "SmartPushWithP8-Swift.h"
 
+
+typedef NS_ENUM(NSUInteger, PushEnvType) {
+    PushEnvTypeDev,
+    PushEnvTypeProduction,
+};
+
+typedef NS_ENUM(NSUInteger, PushLineType) {
+    PushLineTypeSandbox,
+    PushLineTypeDevelopment,
+};
+
 @interface PushViewController ()
+
 @property (weak) IBOutlet NSTextField *cerKeyTextField;
 @property (weak) IBOutlet NSTextField *priorityKeyTextField;
 @property (weak) IBOutlet NSLayoutConstraint *tokenKeyTopConstraint;
+@property (weak) IBOutlet NSTextField *apiLineKeyTextField;
+@property (weak) IBOutlet NSMatrix *apiLineSelectMatrix;
+@property (weak) IBOutlet NSLayoutConstraint *apiLineKeyTopConstraint;
 
-
+@property (nonatomic) PushEnvType envType;
+@property (nonatomic) PushLineType lineType;
 @end
 
 @implementation PushViewController
@@ -43,7 +59,7 @@
     
     _connectResult = -50;
     _closeResult = -50;
-    [self modeSwitch:self.devSelect];
+    [self setEnvType:PushEnvTypeDev];
     [self loadUserData];
     [self loadKeychain];
     
@@ -75,29 +91,16 @@
         self.bundleIDTextField.hidden = NO;
         self.tokenKeyTopConstraint.constant = dertaP8VWithTokenAndCer;
     }
-}
-
-- (IBAction)devPopButtonSelect:(DragPopUpButton*)sender {
-    if (sender.indexOfSelectedItem ==0) {
-        _cerName = nil;
-        _lastCerPath = nil;
-    }
-    else if (sender.indexOfSelectedItem ==1) {
-        //        [self devCerBrowse:nil];
-        [self browseDone:^(NSString *url) {
-            [self applyWithCerPath:url];
-            [self updateUI];
-        }];
+    
+    if (self.envType == PushEnvTypeDev) {
+        self.apiLineKeyTextField.hidden = NO;
+        self.apiLineSelectMatrix.hidden = NO;
+        self.apiLineKeyTopConstraint.constant = 20;
     } else {
-        [self log:[NSString stringWithFormat:@"选择证书 %@",_cerName] warning:NO];
-        [self resetConnect];
-        _currentSec =   [_certificates objectAtIndex:sender.indexOfSelectedItem-2];
-        _cerName = _currentSec.name;
-        [self connect:nil];
-        
+        self.apiLineKeyTextField.hidden = YES;
+        self.apiLineSelectMatrix.hidden = YES;
+        self.apiLineKeyTopConstraint.constant = - 15;
     }
-    [self updateUI];
-    [self saveUserData];
 }
 
 - (void)applyWithCerPath:(NSString*)cerPath {
@@ -249,8 +252,7 @@
     
 }
 
-#pragma mark --IBAction
-- (IBAction)connect:(id)sender {
+- (void)connect:(id)sender {
     [self saveUserData];
     
     if (_currentSec.type == SecTypeCer) {
@@ -320,6 +322,53 @@
     
 }
 
+- (void)setEnvType:(PushEnvType)envType {
+    _envType = envType;
+    
+    [self resetConnect];
+    
+    if (envType == PushEnvTypeDev) {//测试环境
+        [self log:@"切换到开发环境" warning:NO];
+    } else if (envType == PushEnvTypeProduction) { //生产正式环境
+        [self log:@"切换到生产正式环境" warning:NO];
+    }
+}
+
+- (void)setLineType:(PushLineType)lineType {
+    _lineType = lineType;
+    [self resetConnect];
+    
+    if (lineType == PushLineTypeSandbox) {//.sandbox 线路
+        [self log:@"切换到https://api.sandbox.push.apple.com/3/device/" warning:NO];
+    } else if (lineType == PushLineTypeDevelopment) { //.development
+        [self log:@"切换到https://api.development.push.apple.com/3/device/" warning:NO];
+    }
+}
+
+#pragma mark --IBAction
+- (IBAction)devPopButtonSelect:(DragPopUpButton*)sender {
+    if (sender.indexOfSelectedItem ==0) {
+        _cerName = nil;
+        _lastCerPath = nil;
+    }
+    else if (sender.indexOfSelectedItem ==1) {
+        //        [self devCerBrowse:nil];
+        [self browseDone:^(NSString *url) {
+            [self applyWithCerPath:url];
+            [self updateUI];
+        }];
+    } else {
+        [self log:[NSString stringWithFormat:@"选择证书 %@",_cerName] warning:NO];
+        [self resetConnect];
+        _currentSec =   [_certificates objectAtIndex:sender.indexOfSelectedItem-2];
+        _cerName = _currentSec.name;
+        [self connect:nil];
+        
+    }
+    [self updateUI];
+    [self saveUserData];
+}
+
 - (IBAction)push:(id)sender {
     [self saveUserData];
     
@@ -361,7 +410,7 @@
             return;
         }
         topic = self.bundleIDTextField.stringValue;
-        p8Token = [JWTManager tokenWithKeyId:keyId teamId:teamId p8String:_currentSec.p8String];
+        p8Token = [JWTManager tokenWithKeyId:keyId teamId:teamId p8String:_currentSec.p8String issueDate:_currentSec.date expireDuration:_currentSec.expire.integerValue];
     }
     
     if ([pushType isEqualToString:@"liveactivity"]) {
@@ -375,7 +424,8 @@
                                          collapseID:@""
                                            pushType:pushType
                                             p8Token:p8Token
-                                          inSandbox:(self.devSelect == self.mode.selectedCell)
+                                              isDev:self.envType == PushEnvTypeDev
+                                  lineTypeIsSandbox:self.lineType == PushLineTypeSandbox
                                          exeSuccess:^(id  _Nonnull responseObject) {
         [self showMessage:@"发送成功"];
         [self log:@"发送成功" warning:NO];
@@ -386,18 +436,14 @@
     }];
 }
 
+- (IBAction)apiLineSitch:(NSMatrix *)sender {
+    [self setLineType:sender.selectedColumn];
+}
+
 //环境切换
-- (IBAction)modeSwitch:(id)sender {
-    [self resetConnect];
-    //测试环境
-    if (self.devSelect == self.mode.selectedCell) {
-        [self log:@"切换到开发环境" warning:NO];
-    }
-    //生产正式环境
-    if (self.productSelect == self.mode.selectedCell) {
-        //_cerPath = [[NSBundle mainBundle] pathForResource:self.productCer.stringValue ofType:@"cer"];
-        [self log:@"切换到生产正式环境" warning:NO];
-    }
+- (IBAction)modeSwitch:(NSMatrix *)sender {
+    [self setEnvType:sender.selectedColumn];
+    [self updateUI];
 }
 
 - (IBAction)prioritySwitch:(id)sender {
@@ -464,8 +510,8 @@
     [alert setAlertStyle:style];
     [alert runModal];
 }
-#pragma mark - Logging
 
+#pragma mark - Logging
 - (void)log:(NSString *)message warning:(BOOL)warning {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (message.length>0) {
@@ -479,7 +525,6 @@
 }
 
 #pragma mark -- text field delegate
-
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
     
 }

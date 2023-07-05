@@ -22,12 +22,13 @@ NS_ASSUME_NONNULL_BEGIN
           withTopic:(nullable NSString *)topic
            priority:(nullable NSString *)priority
          collapseID:(nullable NSString *)collapseID
-        pushType:(NSString *)pushType
+           pushType:(NSString *)pushType
             p8Token:(NSString *)p8Token
-          inSandbox:(BOOL)sandbox
-             exeSuccess:(void(^)(id responseObject))exeSuccess
-              exeFailed:(void(^)(NSString *error))exeFailed;
--(void)disconnect;
+              isDev:(BOOL)envIsDev
+  lineTypeIsSandbox:(BOOL)lineTypeIsSandbox
+         exeSuccess:(void(^)(id responseObject))exeSuccess
+          exeFailed:(void(^)(NSString *error))exeFailed;
+- (void)disconnect;
 @end
 
 NS_ASSUME_NONNULL_END

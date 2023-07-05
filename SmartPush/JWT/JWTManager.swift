@@ -9,7 +9,7 @@
 import Foundation
 
 @objc public class JWTManager : NSObject {
-    @objc public class func token(keyId:String, teamId:String, p8String:String) -> String{
+    @objc public class func token(keyId:String, teamId:String, p8String:String, issueDate:Date, expireDuration:TimeInterval) -> String{
         
         if keyId.isEmpty {
             return ""
@@ -19,7 +19,7 @@ import Foundation
             return ""
         }
         
-        let jwt = JWT(keyID: keyId, teamID: teamId, issueDate: Date(), expireDuration: 60 * 60)
+        let jwt = JWT(keyID: keyId, teamID: teamId, issueDate: issueDate, expireDuration: expireDuration)
         var token : String = ""
         do {
             token = try jwt.sign(with: p8String)

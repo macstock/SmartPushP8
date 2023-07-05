@@ -60,13 +60,22 @@ static NetworkManager *_sharedManager = nil;
               withTopic:(nullable NSString *)topic
                priority:(nullable NSString *)priority
              collapseID:(nullable NSString *)collapseID
-            pushType:(NSString *)pushType
+               pushType:(NSString *)pushType
                 p8Token:(NSString *)p8Token
-              inSandbox:(BOOL)sandbox
+                  isDev:(BOOL)envIsDev
+      lineTypeIsSandbox:(BOOL)lineTypeIsSandbox
              exeSuccess:(void(^)(id responseObject))exeSuccess
               exeFailed:(void(^)(NSString *error))exeFailed {
     
-    NSString *url = [NSString stringWithFormat:@"https://api%@.push.apple.com/3/device/%@", sandbox?@".sandbox":@"", token];
+    
+    NSInteger apiIndex = 0;
+    NSString *url;
+    if (lineTypeIsSandbox) {//api.sandbox
+        url = [NSString stringWithFormat:@"https://api%@.push.apple.com/3/device/%@", envIsDev ? @".sandbox" : @"", token];
+    } else {//api.development
+        url = [NSString stringWithFormat:@"https://api%@.push.apple.com/3/device/%@", envIsDev ? @".development" : @"", token];
+    }
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
     request.HTTPMethod = @"POST";
     request.timeoutInterval = 10;
