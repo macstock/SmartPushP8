@@ -1,3 +1,4 @@
+// filepath: 
 name: Xcode - Build and Package
 
 on:
@@ -30,7 +31,7 @@ jobs:
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
       
-      # 新增构建和打包DMG的步骤
+      # 构建应用步骤
       - name: Archive App
         env:
           scheme: ${{ 'default' }}
@@ -40,6 +41,11 @@ jobs:
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
           # 构建应用程序并导出
           xcodebuild -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -configuration Release -derivedDataPath build
+          
+          # 保存APP名称供后续使用
+          APP_PATH=$(find ./build -name "*.app" -type d | head -n 1)
+          APP_NAME=$(basename "$APP_PATH" .app)
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
           
       - name: Create DMG
         run: |
@@ -61,17 +67,14 @@ jobs:
             --app-drop-link 600 185 \
             "$APP_NAME.dmg" \
             "$APP_PATH"
-          
-          # 保存APP名称供后续步骤使用
-          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
             
       - name: Upload DMG Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4  # 升级到 v4 版本
         with:
           name: app-dmg
           path: "*.dmg"
-
-      # 创建GitHub Release
+          
+      # 创建GitHub Release，并添加安全提示说明
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v1
@@ -83,9 +86,22 @@ jobs:
           name: Release v${{ github.run_number }}
           draft: false
           prerelease: false
-          files: ${{ env.APP_NAME }}.dmg
+          files: "*.dmg"
           body: |
-            自动构建的应用程序发布
+            # ${{ env.APP_NAME }} v${{ github.run_number }}
+            
+            ## 安装说明
+            
+            由于应用未经过苹果签名和公证，首次安装时可能会遇到安全警告。按照以下步骤安装:
+            
+            1. 右键点击应用程序，选择"打开"
+            2. 在弹出的对话框中，再次点击"打开"
+            
+            ### 或者启用"允许任何来源"选项:
+            
+            1. 打开系统偏好设置 > 安全性与隐私 > 通用
+            2. 尝试运行应用后，会出现"已阻止应用运行"的提示和"仍要打开"的选项
+            3. 点击"仍要打开"
             
             构建时间: ${{ github.event.repository.updated_at }}
             提交: ${{ github.sha }}
