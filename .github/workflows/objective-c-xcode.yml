@@ -61,9 +61,31 @@ jobs:
             --app-drop-link 600 185 \
             "$APP_NAME.dmg" \
             "$APP_PATH"
+          
+          # 保存APP名称供后续步骤使用
+          echo "APP_NAME=$APP_NAME" >> $GITHUB_ENV
             
       - name: Upload DMG Artifact
-        uses: actions/upload-artifact@v4  # 升级到 v4 版本
+        uses: actions/upload-artifact@v4
         with:
           name: app-dmg
           path: "*.dmg"
+
+      # 创建GitHub Release
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'workflow_dispatch' || contains(github.ref, 'master')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          draft: false
+          prerelease: false
+          files: ${{ env.APP_NAME }}.dmg
+          body: |
+            自动构建的应用程序发布
+            
+            构建时间: ${{ github.event.repository.updated_at }}
+            提交: ${{ github.sha }}
